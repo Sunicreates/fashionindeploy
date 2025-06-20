@@ -1,26 +1,22 @@
 require('dotenv').config();
-
 const fs = require('fs');
-const uploadDir = 'uploads';
-if (!fs.existsSync(uploadDir)) {
-  fs.mkdirSync(uploadDir, { recursive: true });
-}
 const mongoose = require('mongoose');
 const cors = require('cors');
 const express = require('express');
 const multer = require('multer');
+const cloudinary = require('cloudinary').v2;
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, 'uploads/');
-  },
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + '-' + file.originalname);
-  }
+// Configure Cloudinary
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-const upload = multer({ storage });
 const app = express();
+
+// Multer setup (temporary local storage before Cloudinary upload)
+const upload = multer({ dest: 'temp/' });
 
 app.use(cors({
   origin: [
@@ -31,7 +27,6 @@ app.use(cors({
 }));
 
 app.use(express.json());
-app.use('/uploads', express.static('uploads'));
 
 const PostModel = require("./postmodel.cjs");
 const UserModel = require("./usermodel.cjs");
@@ -75,16 +70,21 @@ app.post("/post", upload.single('image'), async (req, res) => {
       });
     }
 
-    const imagePath = req.file
-      ? `http://localhost:5000/uploads/${req.file.filename}`
-      : "https://example.com/default.jpg";
+    let imageUrl = "https://example.com/default.jpg";
+    if (req.file) {
+      // Upload to Cloudinary
+      const result = await cloudinary.uploader.upload(req.file.path);
+      imageUrl = result.secure_url;
+      // Delete temporary file
+      fs.unlinkSync(req.file.path);
+    }
 
     const postDocs = posts.map(post => ({
       postId: post.postId,
       userId: user.uid,
       displayName: user.displayName,
       userphoto: user.photoURL,
-      img: imagePath,
+      img: imageUrl,
       caption: post.caption,
       description: post.description,
       tags: post.tags,
@@ -106,6 +106,7 @@ app.post("/post", upload.single('image'), async (req, res) => {
   }
 });
 
+// All other endpoints remain exactly the same
 app.post("/rate", async (req, res) => {
   const { postId, userId, rating, displayName, email } = req.body;
 
