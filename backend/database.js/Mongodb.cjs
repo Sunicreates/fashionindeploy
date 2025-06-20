@@ -9,7 +9,7 @@ const multer = require('multer');
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, '/data/uploads'); // Use persistent disk path for Render
+    cb(null, 'uploads/');
   },
   filename: (req, file, cb) => {
     cb(null, Date.now() + '-' + file.originalname);
@@ -31,7 +31,7 @@ app.use(cors({
 app.use(express.json());
 
 
-app.use('/uploads', express.static('/data/uploads'));
+app.use('/uploads', express.static('uploads'));
 
 const PostModel =require("./postmodel.cjs");
 const UserModel=require("./usermodel.cjs");
