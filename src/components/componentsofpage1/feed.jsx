@@ -70,14 +70,12 @@ function Feed({ posts, setPosts, user }) {
       {/* Header */}
       <div className="text-center mb-8">
         <div className="flex items-center justify-center gap-3 mb-4">
-          <TrendingUp className="w-6 h-6 text-pink-500" />
+          
           <h2 className="text-2xl font-bold bg-gradient-to-r from-pink-600 to-rose-600 bg-clip-text text-transparent">
-            Style Feed
+            My Feed
           </h2>
         </div>
-        <p className="text-base text-gray-600 dark:text-gray-400">
-          Discover amazing outfits from our fashion community
-        </p>
+
       </div>
       {/* Posts */}
       <div className="space-y-6">
@@ -141,20 +139,7 @@ function Feed({ posts, setPosts, user }) {
                     ))}
                   </div>
                 )}
-                <div className="flex items-center gap-2 pt-2">
-                  <Button variant="ghost" className="flex items-center space-x-2 text-gray-600 dark:text-gray-400 hover:text-pink-500">
-                    <Heart className="w-5 h-5" />
-                    <span className="font-medium">{post.likes || 0}</span>
-                  </Button>
-                  <Button variant="ghost" className="flex items-center space-x-2 text-gray-600 dark:text-gray-400 hover:text-pink-500">
-                    <MessageCircle className="w-5 h-5" />
-                    <span className="font-medium">Comment</span>
-                  </Button>
-                  <Button variant="ghost" className="flex items-center space-x-2 text-gray-600 dark:text-gray-400 hover:text-pink-500">
-                    <Share2 className="w-5 h-5" />
-                    <span className="font-medium">Share</span>
-                  </Button>
-                </div>
+               
                 <div className="pt-2">
                   <div className="flex items-center gap-2 mb-2">
                     <Sparkles className="w-4 h-4 text-pink-500" />
