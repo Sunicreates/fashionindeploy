@@ -221,10 +221,7 @@ export default function LandingPage({ setUser }) {
                     <div className="text-2xl font-bold text-pink-700">50K+</div>
                     <div className="text-pink-500 text-xs font-medium">Style Posts</div>
                   </div>
-                  <div className="space-y-1">
-                    <div className="text-2xl font-bold text-pink-700">25K+</div>
-                    <div className="text-pink-500 text-xs font-medium">Fashion Lovers</div>
-                  </div>
+
                 </div>
               </div>
             </div>
