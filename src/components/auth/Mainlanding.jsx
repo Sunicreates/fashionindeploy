@@ -126,12 +126,7 @@ export default function LandingPage({ setUser }) {
                   <span className="text-xl font-bold bg-gradient-to-r from-pink-700 to-pink-400 bg-clip-text text-transparent">Fashion City</span>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <Button variant="ghost" size="sm" className="glass-button p-2.5">
-                    <Search className="h-5 w-5 text-pink-500" />
-                  </Button>
-                  <Button variant="ghost" size="sm" className="glass-button p-2.5">
-                    <Menu className="h-5 w-5 text-pink-500" />
-                  </Button>
+                      
                 </div>
               </div>
             </nav>
