@@ -126,7 +126,7 @@ export default function LandingPage({ setUser }) {
                   <span className="text-xl font-bold bg-gradient-to-r from-pink-700 to-pink-400 bg-clip-text text-transparent">Fashion City</span>
                 </div>
                 <div className="flex items-center space-x-2">
-                      <div className="w-8 h-1 bg-pink-500 rounded-full"></div>
+                      <div className="w-8 h-3 bg-pink-500 rounded-full"></div>
                 </div>
               </div>
             </nav>
