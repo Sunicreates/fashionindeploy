@@ -218,10 +218,13 @@ export default function LandingPage({ setUser }) {
                 </h2>
                 <div className="grid grid-cols-2 gap-4 text-center">
                   <div className="space-y-1">
-                    <div className="text-2xl font-bold text-pink-700">50K+</div>
+                    <div className="text-2xl font-bold text-pink-700">Create</div>
                     <div className="text-pink-500 text-xs font-medium">Style Posts</div>
                   </div>
-
+                  <div className="space-y-1">
+                    <div className="text-2xl font-bold text-pink-700">Become</div>
+                    <div className="text-pink-500 text-xs font-medium">Fashion Lovers</div>
+                  </div>
                 </div>
               </div>
             </div>
